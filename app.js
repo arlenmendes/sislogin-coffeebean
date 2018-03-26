@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var port = 3000;
 
 var app = express();
 
@@ -62,4 +63,9 @@ app.route('/api/auth').post(function (req, res) {
     }
 });
 
-// app.listen(3000);
+app.listen(
+    port,
+    () => {
+        console.log(`Servidor rodando  na porta ${port}`)
+}
+);

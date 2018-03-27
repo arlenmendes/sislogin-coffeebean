@@ -1,17 +1,16 @@
 var express = require('express');
 let path = require('path');
 var bodyParser = require('body-parser');
-var cors = require('cors');
 var port = 3000;
 
 var app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname)));
 
-app.use(cors());
 const sendResposta = function (res, statusCode, mensagem) {
-    res.status(statusCode).json({'mensgem': mensagem});
+    res.status(statusCode).json({'mensagem': mensagem});
 }
 
 app.route('/').get(function (req, res) {

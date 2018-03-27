@@ -45,10 +45,23 @@ app.route('/api/auth').post(function (req, res) {
         //fim validacao email
 
         //validacao senha
+        console.log(senha.length)
+        if( senha.length < 10 || senha.length > 128 ) {
+            erro = true;
+            sendResposta(res, 401, 'Tamanho da senha invalido!');
+        }
+        const regSenhaNumero = new RegExp("(.*[0-9]+.*[0-9]+.*)");
+        const regSenhaMinusculas = new RegExp("^.*([a-z]+.*[a-z]+.*)$");
+        const regSenhaMaiusculas = new RegExp("^.*([A-Z]+.*[A-Z]+.*)$");
+        const regSenhaSimbolos = new RegExp("^.*([(!#$%&'*+-/=?^_`@{|}~)]+.*[(!#$%&'*+-/=?^_`@{|}~)]+.*)$");
+        console.log(senha);
+        console.log(regSenhaMaiusculas.test(senha));
+        console.log(regSenhaMinusculas.test(senha));
+        console.log(regSenhaNumero.test(senha));
+        console.log(regSenhaSimbolos.test(senha));
+        // ssSS$$22
 
-        const regSenha= new RegExp("^(?!^([a-z]+|[A-Z]+|\\d+|[\\W_]+)$).{10,128}$");
-
-        if(!regSenha.test(senha)) {
+        if(!regSenhaMaiusculas.test(senha) || !regSenhaMinusculas.test(senha) || !regSenhaNumero.test(senha) || !regSenhaSimbolos.test(senha)) {
             erro = true;
             sendResposta(res, 401, 'Senha no formato inválido!');
         }

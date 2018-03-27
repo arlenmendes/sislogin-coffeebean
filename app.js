@@ -53,13 +53,7 @@ app.route('/api/auth').post(function (req, res) {
         const regSenhaNumero = new RegExp("(.*[0-9]+.*[0-9]+.*)");
         const regSenhaMinusculas = new RegExp("^.*([a-z]+.*[a-z]+.*)$");
         const regSenhaMaiusculas = new RegExp("^.*([A-Z]+.*[A-Z]+.*)$");
-        const regSenhaSimbolos = new RegExp("^.*([(!#$%&'*+-/=?^_`@{|}~)]+.*[(!#$%&'*+-/=?^_`@{|}~)]+.*)$");
-        console.log(senha);
-        console.log(regSenhaMaiusculas.test(senha));
-        console.log(regSenhaMinusculas.test(senha));
-        console.log(regSenhaNumero.test(senha));
-        console.log(regSenhaSimbolos.test(senha));
-        // ssSS$$22
+        const regSenhaSimbolos = new RegExp("^.*([ !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]+.*[ !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]+.*)$");
 
         if(!regSenhaMaiusculas.test(senha) || !regSenhaMinusculas.test(senha) || !regSenhaNumero.test(senha) || !regSenhaSimbolos.test(senha)) {
             erro = true;
